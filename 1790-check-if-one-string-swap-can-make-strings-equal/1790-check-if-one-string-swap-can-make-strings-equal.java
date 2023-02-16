@@ -1,31 +1,21 @@
 class Solution {
     public boolean areAlmostEqual(String s1, String s2) {
-  if(s1.equals(s2)) return true;
-            int count = 0;
-            int sum1 = 0;
-            int sum2 = 0;
-            for(int i = 0; i<s1.length(); i++){
-                sum1 = sum1 + s1.charAt(i);
-                sum2 = sum2 + s2.charAt(i);
-           }
-        if(sum1 == sum2){
-            if( s1.length() == 2|| s1.length() == 4  &&s1.charAt(0) != s2.charAt(s2.length()-1))
-            {
-                return false;
-            }
-             for(int i = 0; i<s1.length(); i++){
-           if(s1.charAt(i)!= s2.charAt(i)){
-               count++;
-           }
+ if(s1.equals(s2)) return true;
+        if(s1.length() != s2.length()) return false;
+        ArrayList<Integer> list = new ArrayList<>();
+        int a = 0;
+        boolean toReturn = false;
+        for(int i = 0; i < s1.length(); i++){
+            if(s1.charAt(i) != s2.charAt(i)) list.add(i);
+        }
+        if(list.size() > 2) return false;
+        if(list.size() == 2) 
+        {
+            int i = list.get(0) , j = list.get(1);
+            toReturn = s1.charAt(i) == s2.charAt(j) && s1.charAt(j) == s2.charAt(i);
+            return toReturn;
         }
         
-        if(count == 2){
-            return true;
-        }
-    }
-    else{
-        return false;
-    }
-        return false;
+        return toReturn;
     }
 }
