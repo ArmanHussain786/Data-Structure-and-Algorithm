@@ -25,9 +25,9 @@ class GFG {
 class Solution {
     int isPalindrome(String S) {
         // code here
-        int start=0;
-        int end=S.length()-1;
-        while(start<=end)
+        int start = 0;
+        int end = S.length()-1;
+        while(start<end)
         {
             if(S.charAt(start)!=S.charAt(end))
             {
@@ -38,4 +38,4 @@ class Solution {
         }
         return 1;
     }
-};
+}
