@@ -14,7 +14,7 @@ class Solution {
             }
             else if(j-i+1==k)
             {
-                System.out.println(sum);
+               // System.out.println(sum);
                 int ans = sum/k;
                 if(ans>=threshold)
                 {
