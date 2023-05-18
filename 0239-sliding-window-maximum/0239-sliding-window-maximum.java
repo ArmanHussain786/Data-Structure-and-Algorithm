@@ -1,29 +1,74 @@
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        int n=nums.length;
-        int []res = new int[n-k+1];
-        int ri=0;
-        Deque<Integer> q = new ArrayDeque<>();
-        for(int i=0;i<n;i++)
+       List<Integer> ans = new ArrayList<>();
+        Deque<Integer> deque = new LinkedList<>();
+        int i=0;
+        int j=0;
+        int n = nums.length;
+        while(j<n)
         {
-            //remove out of bound ranges
-            if(!q.isEmpty()  && q.peek()==i-k)
+            while(!deque.isEmpty() && deque.peekLast()<nums[j])
             {
-                q.poll();
+                deque.removeLast();
             }
-            //remove all smaller elements 
-            while(!q.isEmpty() && nums[q.peekLast()]<nums[i])
-                q.pollLast();
+            deque.addLast(nums[j]);
             
-            q.offer(i);
-            if(i>=k-1)
+            if(j-i+1<k)
             {
-                res[ri++]=nums[q.peek()];
-          
+                j++;
             }
-            
+            else if(j-i+1==k)
+            {
+                
+                 ans.add(deque.peekFirst());
+                if(deque.peekFirst()==nums[i])
+                    deque.removeFirst();
+                
+               
+                
+                i++;
+                j++;
+                
+            }
         }
-        return res;
-       
+        int arr[]= new int[ans.size()];
+        for(int z=0;z<arr.length;z++)
+        {
+            arr[z]=ans.get(z);
+        }
+        return arr;
     }
 }
+
+
+//  List<Integer> ans = new ArrayList<>();
+//         Deque<Integer> deque = new LinkedList<>();
+//         int i = 0;
+//         int j = 0;
+
+//         if (k > nums.length) { // edge case
+//             int max = Integer.MIN_VALUE;
+//             for (int num : nums) {
+//                 max = Math.max(max, num);
+//             }
+//             ans.add(max);
+//             return ans;
+//         }
+
+//         while (j < nums.length) {
+//             while (!deque.isEmpty() && deque.peekLast() < nums[j]) {
+//                 deque.removeLast();
+//             }
+//             deque.addLast(nums[j]);
+//             if ((j - i + 1) < k) {
+//                 j++;
+//             } else if (j - i + 1 == k) {
+//                 ans.add(deque.peekFirst());
+//                 if (deque.peekFirst() == nums[i]) {
+//                     deque.removeFirst();
+//                 }
+//                 i++;
+//                 j++;
+//             }
+//         }
+//         return ans;
