@@ -15,7 +15,7 @@ class Solution {
            }
            if(mp.size()>=k)
            {
-               while(mp.size()>=k)
+               while(mp.size()==k)
                {
                    mp.put(s.charAt(i),mp.getOrDefault(s.charAt(i),0)-1);
                    
