@@ -20,7 +20,7 @@ class Solution {
               
                 count++;
             }
-            if(j-i+1>k)
+            while(j-i+1>k)
             {
                 if(isVowel(s.charAt(i)))
                 {
