@@ -1,23 +1,32 @@
 class Solution {
     public int numSubarraysWithSum(int[] nums, int goal) {
-        int n=nums.length;
-        int count=0;
-        
+        //this is the part of the fixed sized sliding window problem
+        // here we do what first intialise i and j 
+        return (find(nums,goal)-find(nums,goal-1));
+       
+    }
+    public int find(int []nums,int goal)
+    {
+         int i=0;
+        int j=0;
         int sum=0;
-        HashMap<Integer,Integer> mp = new HashMap<>();
-        for(int i=0;i<n;i++)
+        int ans =0;
+        if(goal<0)
         {
-            mp.put(sum,mp.getOrDefault(sum,0)+1);
-            sum=sum+nums[i];
-            
-            if(mp.containsKey(sum-goal))
-            {
-                count=count+mp.get(sum-goal);
-            }
-            
-            
+            return 0;
         }
-        
-        return count;
+        while(j<nums.length)
+        {
+            sum = sum+nums[j];
+           
+            while(sum>goal)
+            {
+                sum=sum-nums[i];
+                i++;
+            }
+            ans = ans+ j-i+1;
+            j++;
+        }
+        return ans;
     }
 }
