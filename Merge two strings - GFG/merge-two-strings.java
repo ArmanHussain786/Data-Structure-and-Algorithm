@@ -24,30 +24,26 @@ class Solution
     String merge(String S1, String S2)
     { 
         // code here
-        int start=0;
-        int start2 =0;
-        String mer = "";
-        while(start!=S1.length()  && start2!=S2.length())
+        int s =0;
+        int s1 =0;
+        String str = "";
+        while(s!=S1.length()  && s1 != S2.length())
         {
-            mer = mer + S1.charAt(start);
-            mer = mer + S2.charAt(start2);
-            
-            start++;
-            start2++;
+            str = str + S1.charAt(s);
+            str = str + S2.charAt(s1);
+            s++;
+            s1++;
         }
-        
-        while(start!=S1.length())
+        while(s!=S1.length())
         {
-            mer = mer + S1.charAt(start);
-            start++;
+            str = str + S1.charAt(s);
+            s++;
         }
-        while(start2!=S2.length())
+        while(s1!=S2.length())
         {
-            mer = mer + S2.charAt(start2);
-            start2++;
+            str = str + S2.charAt(s1);
+            s1++;
         }
-        
-       // System.out.println(mer);
-        return mer;
+        return str;
     }
 } 
