@@ -1,38 +1,42 @@
 class Solution {
     public int longestSubarray(int[] nums) {
-     int maxSize = 0;
-        int left = 0;
-        int right = 0;
-        int countOnes = 0;
-        int numZeros = 0;
-
-        while (right < nums.length) {
-            if (nums[right] == 0) {
-                numZeros++;
+        int i=0;
+        int j=0;
+        int n = nums.length;
+        int zero=0;
+        int res=0;
+        while(j<n)
+        {
+            if(nums[j]==0)
+            {
+                zero++;
             }
-
-            while (numZeros > 1) {
-                if (nums[left] == 0) {
-                    numZeros--;
-                }
-                left++;
+             if(zero>1)
+            {
+                while(nums[i++]!=0);
+                 zero--;  
+               
             }
-
-            countOnes = right - left + 1;
-            maxSize = Math.max(maxSize, countOnes);
-
-            right++;
+                 res = Math.max(res,j-i); 
+                j++;
         }
-
-        return maxSize > 0 ? maxSize - 1 : 0;
+        return res;
     }
 }
-// In this implementation, we maintain a sliding window represented by the left and right indices. We count the number of zeros (numZeros) encountered in the window and continuously adjust the window to have at most one zero. The variable countOnes keeps track of the size of the subarray containing only 1's within the window. We update maxSize whenever we find a longer subarray. Finally, we return maxSize - 1 as we are allowed to delete only one element.
-
-// Please note that this solution assumes the input nums contains at least one 1.
 
 
 
 
-
-
+//         int zero=0;
+//         int i=0,j=0,res=0;
+//         while(j<nums.size()){
+//             if(nums[j]==0)
+//                 zero++;
+//             if(zero>1){
+//                 while(nums[i++]!=0);
+//                 zero--;
+//             }
+//             res=max(res,j-i);                 // we don't write j-i+1 because we need to give   its length after removing the zero
+//             j++;
+//         }
+//         return res;
