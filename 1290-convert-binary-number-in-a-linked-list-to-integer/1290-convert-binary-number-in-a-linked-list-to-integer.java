@@ -10,28 +10,29 @@
  */
 class Solution {
     public int getDecimalValue(ListNode head) {
-        ArrayList<Integer> zap = new ArrayList<>();
+        ArrayList<Integer> res = new ArrayList<>();
         ListNode curr = head;
         while(curr!=null)
         {
-             zap.add(curr.val);
-            curr = curr.next;
+            res.add(curr.val);
+            curr= curr .next;
         }
-        int res=0;
+        int ans =0;
         int count=0;
-        for(int i=zap.size()-1;i>=0;i--)
+        for(int i=res.size()-1;i>=0;i--)
         {
-            int ans = zap.get(i);
-	        if(ans==1)
-	           res = res + (int)Math.pow(2,count);
-	        else
-	           res = res + 0;
-	     
-	     count++;
+            if(res.get(i)==1)
+            {
+                ans = ans + (int)Math.pow(2,count);
+               
+            }
+            else
+            {
+                ans = ans +0;
+            }
+             count++;
         }
-        
-       
-        return res;
+        return ans;
         
     }
 }
